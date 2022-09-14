@@ -1,20 +1,19 @@
-import './App.css';
+import "./App.css";
+import Routers from "./routes";
 
-import Home from './components/Home';
-import Login from './components/Login';
-import Register from './components/Register';
+import {setAuthToken} from './helpers/setAuthToken'
 
-import {Routes, Route} from 'react-router-dom'
+
 
 function App() {
-  return (<div>
-    Hello there
-      <Routes>
-        <Route path='/' exact element={<Home/>}/>
-        <Route path='/login' element={<Login/>}/>
-        <Route path='/register'element={<Register/>}/>
-      </Routes>
+  const token = localStorage.getItem("token");
+  if (token) {
+    setAuthToken(token);
+  }
 
+  return (
+    <div className="App">
+      <Routers />
     </div>
   );
 }
